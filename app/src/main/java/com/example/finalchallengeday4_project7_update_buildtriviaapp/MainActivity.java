@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton back_imgBtn;
     private ImageButton next_imgBtn;
 
+    private TextView currentScore_textView;
+    private TextView highestScore_textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         true_btn = findViewById(R.id.true_button);
         back_imgBtn = findViewById(R.id.previous_ImageButton);
         next_imgBtn = findViewById(R.id.next_ImageButton);
+
+        currentScore_textView = findViewById(R.id.currentScore_tV);
+        highestScore_textView = findViewById(R.id.highestScore_tV);
+
 
         cardView.setCardBackgroundColor(getResources().getColor(R.color.colorCard));
         false_btn.setOnClickListener(this);

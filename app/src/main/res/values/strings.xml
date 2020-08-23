@@ -6,4 +6,8 @@
     <string name="next_button">Next Button</string>
     <string name="correct_answer">Correct Answer</string>
     <string name="wrong_answer">Wrong Answer</string>
+    <string name="trivia_app">Trivia App</string>
+    <string name="version_1_1">Version 1.1</string>
+    <string name="current_score">Current Score :</string>
+    <string name="highest_score">Highest Score :</string>
 </resources>

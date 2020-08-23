@@ -7,6 +7,116 @@
     android:background="@color/colorBackground"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/titleProject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/trivia_app"
+        android:textColor="@color/colorText"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="25dp"/>
+
+    <TextView
+        android:id="@+id/titleVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/version_1_1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/titleProject"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="0dp" />
+
+    <TextView
+        android:id="@+id/calculateQuestionNumbers_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/cardView"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginEnd="17dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginBottom="10dp"
+        tools:text="0/100"
+        android:textColor="@color/colorButton"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/cardView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:id="@+id/rootCurrentScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/current_score"
+                android:textColor="@color/colorText"
+                android:textSize="21sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/currentScore_tV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="36"
+                android:layout_marginStart="10dp"
+                android:textSize="21sp"
+                android:textColor="@color/colorButton"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/rootHighScore"
+            android:layout_below="@id/rootCurrentScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/highest_score"
+                android:textColor="@color/colorText"
+                android:textSize="21sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/highestScore_tV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="369"
+                android:layout_marginStart="10dp"
+                android:textSize="21sp"
+                android:textColor="@color/colorText"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
