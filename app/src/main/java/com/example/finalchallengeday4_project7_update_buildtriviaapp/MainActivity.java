@@ -30,8 +30,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton back_imgBtn;
     private ImageButton next_imgBtn;
 
+    private TextView calculateQuestionNumber_textView;
     private TextView currentScore_textView;
     private TextView highestScore_textView;
+    private int currentScore = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         back_imgBtn = findViewById(R.id.previous_ImageButton);
         next_imgBtn = findViewById(R.id.next_ImageButton);
 
+        calculateQuestionNumber_textView = findViewById(R.id.calculateQuestionNumbers_textView);
         currentScore_textView = findViewById(R.id.currentScore_tV);
         highestScore_textView = findViewById(R.id.highestScore_tV);
 
@@ -71,10 +74,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()){
             case R.id.false_button:
                 checkIfAnswer(false);
+                currentQuestionIndex = (currentQuestionIndex + 1) % questionList.size();
+                updateQuestion();
                 break;
 
             case R.id.true_button:
                 checkIfAnswer(true);
+                currentQuestionIndex = (currentQuestionIndex + 1) % questionList.size();
+                updateQuestion();
                 break;
 
             case R.id.previous_ImageButton:
@@ -95,13 +102,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void updateQuestion(){
         String currentQuestion = questionList.get(currentQuestionIndex).getQuestion();
         question_textView.setText(currentQuestion);
+        calculateQuestionNumber_textView.setText(currentQuestionIndex+" / "+questionList.size());
+
     }
 
     private void checkIfAnswer(boolean answerIs){
         boolean answer = questionList.get(currentQuestionIndex).isAnswerTrue();
         if (answerIs == answer){
+//            currentScore += 10;
+            currentScore_textView.setText(String.valueOf(currentScore+=10));
             Toast.makeText(getApplicationContext(), R.string.correct_answer,Toast.LENGTH_SHORT).show();
         }else{
+            currentScore_textView.setText(String.valueOf(currentScore-=5));
             Toast.makeText(getApplicationContext(), R.string.wrong_answer,Toast.LENGTH_SHORT).show();
         }
     }
