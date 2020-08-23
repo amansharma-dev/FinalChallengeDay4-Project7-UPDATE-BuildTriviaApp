@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FinalChallengeDay4-Project7-UPDATE-BuildTriviaApp</string>
+    <string name="false_btn">False</string>
+    <string name="true_btn">True</string>
+    <string name="previous_btn">Previous Button</string>
+    <string name="next_button">Next Button</string>
+    <string name="correct_answer">Correct Answer</string>
+    <string name="wrong_answer">Wrong Answer</string>
 </resources>
