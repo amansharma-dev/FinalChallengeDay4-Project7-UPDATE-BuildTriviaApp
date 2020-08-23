@@ -3,6 +3,7 @@ package com.example.finalchallengeday4_project7_update_buildtriviaapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.example.finalchallengeday4_project7_update_buildtriviaapp.data.QuestionBank;
 import com.example.finalchallengeday4_project7_update_buildtriviaapp.data.QuestionListAsyncResponse;
 import com.example.finalchallengeday4_project7_update_buildtriviaapp.model.Question;
+import com.example.finalchallengeday4_project7_update_buildtriviaapp.util.SharedPrefs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +37,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView highestScore_textView;
     private int currentScore = 0;
 
+    private SharedPrefs sharedPrefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPrefs = new SharedPrefs(this);
 
         cardView = findViewById(R.id.cardView);
         question_textView = findViewById(R.id.question_textView);
@@ -58,9 +64,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         back_imgBtn.setOnClickListener(this);
         next_imgBtn.setOnClickListener(this);
 
+        int savedHighScore = sharedPrefs.getState();
+        highestScore_textView.setText(String.valueOf(savedHighScore));
+        Log.d(TAG, "processFinished: Saved High Score::"+savedHighScore);
+
+        currentQuestionIndex =sharedPrefs.getCurrentIndex();
+
         questionList = new QuestionBank().getQuestionList(new QuestionListAsyncResponse() {
             @Override
             public void processFinished(ArrayList<Question> questionArrayList) {
+
 
                 updateQuestion();
                 Log.d(TAG, "processFinished: "+questionArrayList.get(currentQuestionIndex).getQuestion()
@@ -104,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         question_textView.setText(currentQuestion);
         calculateQuestionNumber_textView.setText(currentQuestionIndex+" / "+questionList.size());
 
+
     }
 
     private void checkIfAnswer(boolean answerIs){
@@ -116,5 +130,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             currentScore_textView.setText(String.valueOf(currentScore-=5));
             Toast.makeText(getApplicationContext(), R.string.wrong_answer,Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+//        Log.d(TAG, "onPause: "+currentScore);
+        sharedPrefs.saveState(currentScore);
+
+        sharedPrefs.saveCurrentIndex(currentQuestionIndex);
     }
 }
